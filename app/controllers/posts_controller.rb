@@ -26,4 +26,16 @@ class PostsController < ApplicationController
 	def edit
 	  @post = Post.find(params[:id])
 	end
+
+	private
+
+
+# We pass the permitted fields in as *args;
+# this keeps `post_params` pretty dry while
+# still allowing slightly different behavior
+# depending on the controller action
+def post_params(*args)
+  params.require(:post).permit(*args)
+end
+
 end
